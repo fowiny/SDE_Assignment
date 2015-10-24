@@ -9,13 +9,13 @@ import model.HealthProfile;
 import model.Person;
 import dao.PeopleStore;
 
-public class HealthProfileReader {  	
+public class unMarshallFromXML {  	
 	public static PeopleStore people = new PeopleStore();
 
 	public static void main(String[] args) throws Exception {
 		JAXBContext jc = JAXBContext.newInstance(PeopleStore.class);
         System.out.println();
-        System.out.println("Output from our XML File: ");
+        System.out.println("un-marshalling from XML File: ");
         Unmarshaller um = jc.createUnmarshaller();
         PeopleStore people = (PeopleStore) um.unmarshal(new FileReader("people.xml"));
 	

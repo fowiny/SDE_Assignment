@@ -9,7 +9,7 @@ import model.HealthProfile;
 import model.Person;
 import dao.PeopleStore;
 
-public class HealthProfileWriter {  	
+public class MarshallingToXML {  	
 	public static PeopleStore people = new PeopleStore();
 
 	public static void initializeDB() {
@@ -26,7 +26,7 @@ public class HealthProfileWriter {
 	public static void main(String[] args) throws Exception {
 		
 		initializeDB();
-		
+	System.out.println("Marshalling to XML phase: "); 
 	JAXBContext jc = JAXBContext.newInstance(PeopleStore.class);
         Marshaller m = jc.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);

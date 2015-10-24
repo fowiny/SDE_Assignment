@@ -114,9 +114,9 @@
 		</copy>
 	</target>
 
-	<target name="execute.HPWriter">
-		<echo message="Executing Health Profile Writer: will produce a people.xml in home folder" />
-		<java classname="HealthProfileWriter" classpath="${build.dir}">
+	<target name="execute.evaluation">
+		<echo message="Executing assignment" />
+		<java classname="PeopleReader" classpath="${build.dir}">
 			<classpath>
 				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
@@ -124,11 +124,7 @@
 				</fileset>
 			</classpath>
 		</java>
-	</target>
-
-	<target name="execute.HPReader">
-		<echo message="Executing Health Profile Reader: will read the people.xml in home folder and print one at a time" />
-		<java classname="HealthProfileWriter" classpath="${build.dir}">
+		<java classname="MarshallingToXML" classpath="${build.dir}">
 			<classpath>
 				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
@@ -136,11 +132,7 @@
 				</fileset>
 			</classpath>
 		</java>
-	</target>
-
-	<target name="execute.JavaToXML">
-		<echo message="Executing JavaToXML" />
-		<java classname="bookstore.JavaToXML" classpath="${build.dir}">
+		<java classname="unMarshallFromXML" classpath="${build.dir}">
 			<classpath>
 				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
@@ -148,53 +140,17 @@
 				</fileset>
 			</classpath>
 		</java>
-	</target>
-
-	<target name="execute.JAXBMarshaller">
-		<echo message="Executing JAXBMarshaller" />
-		<java classname="bookstore.JAXBMarshaller" classpath="${build.dir}">
+		<java classname="PeopleToJSON" classpath="${build.dir}">
 			<classpath>
+
 				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
-		</java>
-	</target>
 
-	<target name="execute.JAXBUnMarshaller">
-		<echo message="Executing JAXBUnMarshaller" />
-		<java classname="HealthProfileWriter" classpath="${build.dir}">
-			<classpath>
-				<fileset dir="${lib.dir}">
-					<include name="**/*.jar" />
 					<include name="*.jar" />
 				</fileset>
-			</classpath>
-		</java>
-	</target>
 
-	<target name="execute.dozerExample">
-		<echo message="Executing Dozer Example" />
-		<java classname="dozerproject.DozerMapperTest" classpath="${build.dir}">
-			<classpath>
-				<fileset dir="${lib.dir}">
-					<include name="**/*.jar" />
-					<include name="*.jar" />
-				</fileset>
 			</classpath>
-		</java>
-	</target>
 
-	<target name="execute.HPJson">
-		<echo message="Executing Health Profile Writer for Json" />
-		<java classname="HealthProfileJson" classpath="${build.dir}">
-			<classpath>
-				<fileset dir="${lib.dir}">
-					<include name="**/*.jar" />
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
 		</java>
 	</target>
 </project>
