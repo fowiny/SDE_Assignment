@@ -114,7 +114,7 @@
 		</copy>
 	</target>
 
-	<target name="execute.evaluation">
+	<target name="execute.evaluation" depends="compile">
 		<echo message="Executing assignment" />
 		<java classname="PeopleReader" classpath="${build.dir}">
 			<classpath>
