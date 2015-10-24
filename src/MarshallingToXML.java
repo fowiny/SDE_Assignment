@@ -25,7 +25,7 @@ public class MarshallingToXML {
 
 	public static void main(String[] args) throws Exception {
 		
-		initializeDB();
+	initializeDB();
 	System.out.println("Marshalling to XML phase: "); 
 	JAXBContext jc = JAXBContext.newInstance(PeopleStore.class);
         Marshaller m = jc.createMarshaller();

@@ -41,6 +41,7 @@ public class PeopleReader {
 	    return xpath;
     	}
 
+	//Method to return weight of person with corresponding person ID
     	public Node getWeightById(String personID) throws XPathExpressionException {
 
     	    XPathExpression expr = xpath.compile("/people/person[@id='" + personID + "']/healthprofile/weight");
@@ -48,6 +49,7 @@ public class PeopleReader {
     	    return node;
     	}
 
+	//Method to return height of person with corresponding person ID
    	public Node getHeightById(String personID) throws XPathExpressionException {
 
    	   XPathExpression expr = xpath.compile("/people/person[@id='" + personID + "']/healthprofile/height");
@@ -55,6 +57,7 @@ public class PeopleReader {
            return node;
         }
 
+	//Function that prints all people in the list with detail
     	public NodeList getAllPerson() throws XPathExpressionException {
 
         XPathExpression expr = xpath.compile("/people/person");
@@ -62,7 +65,8 @@ public class PeopleReader {
         return nodes;
 
     	}
-	
+
+	//Function that accepts id as parameter and prints the HealthProfile of the person with that id	
 	public Node getHealthProfileById(String personID) throws XPathExpressionException {
 
         XPathExpression expr = xpath.compile("/people/person[@id='" + personID + "']/healthprofile");
@@ -70,19 +74,13 @@ public class PeopleReader {
         return node;
    	 }
 
+	//Function which accepts weight and operator as parameters and prints people with the condition
 	public NodeList getPersonWithCondition(String weight, String condition) throws XPathExpressionException {
 
         XPathExpression expr = xpath.compile("//child::healthprofile[weight " + condition + "'" + weight + "']");
         NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
         return nodes;
    	 }
-
-    	public Node getBookByAuthorUsingAxis(String authorName) throws XPathExpressionException {
-
-        XPathExpression expr = xpath.compile("//child::book[author='" + authorName + "']");
-        Node node = (Node) expr.evaluate(doc, XPathConstants.NODE);
-        return node;
-  	 }
 
    	 public static void main(String[] args) throws ParserConfigurationException, SAXException,
             IOException, XPathExpressionException {
@@ -97,14 +95,9 @@ public class PeopleReader {
 		    }
 	
 		System.out.println("Health profile of person with Id=5:");
-		Node healthProfileNode=p.getHealthProfileById("0005"); //TODO change id to 5
+		Node healthProfileNode=p.getHealthProfileById("0005"); 
 		System.out.println(healthProfileNode.getTextContent());
 	
-		/*Node weightNode =p.getWeightById("0001");
-		System.out.println(weightNode.getTextContent());
-
-		Node heightNode =p.getHeightById("0001");
-		System.out.println(heightNode.getTextContent());*/
 
 		System.out.println("People with weight > 90: ");
 		NodeList conditionNodes=p.getPersonWithCondition("90",">");
@@ -112,37 +105,5 @@ public class PeopleReader {
 			System.out.println(conditionNodes.item(i).getTextContent());
 		    }
 
-	
-
-	
-       /* //getting node by Person ID number
-        node = test.getBookByISBN("0005");
-        System.out.println(node.getTextContent());
-
-		//getting node by ISBN number
-        node = test.getBookByISBN("0005");
-        System.out.println(node.getTextContent());
-
-
-
-        //getting book by health 
-        NodeList nodes = test.getBooksByPrice("10", ">");
-        System.out.println("Books having price > 10");
-        System.out.println("Book-1");
-        System.out.println(nodes.item(0).getTextContent());
-        System.out.println("Book-2");
-        System.out.println(nodes.item(1).getTextContent());
-
-		//the database
-		System.out.println("get the whole database");
-	    NodeList nodes = (NodeList) test.getAllPerson();
-	    for (int i = 0; i < nodes.getLength(); i++) {
-	        System.out.println(nodes.item(i).getTextContent());
-	    }
-
-		//getting book by authorName using AXIS approach
-        System.out.println("Getting book by author name:");
-        node = test.getBookByAuthorUsingAxis("Larry Niven");
-        System.out.println(node.getTextContent());*/
     }
 }
